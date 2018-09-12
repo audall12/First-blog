@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Proress</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="Styles/style.css">
+
+	<script src="jsjs.js"></script>
+	<script src="script.js"></script>
+	<script src="jquery-3.3.1.js"></script>
+	<script src="Canvasplay.js"></script>
+	<script>
+		function copyMessage(){
+		const message = document.createElement('textarea');
+		message.value = "You did it! Apparently this is a good way of sharing your e-mail address without getting spam from machines...";
+		document.body.appendChild(message);
+		message.select();
+		document.execCommand('copy');
+		document.body.removeChild(message);
+		};
+	</script>
+</head>
+<body>
+	<header>
+		<div class="pageTitle">Progress</div>
+		<a class="nav" id="firstNav" href="projects.html">Projects</a>
+		<a class="nav logo" href="index.html"><div></div></a>
+		<a class="nav" href="contact.html">Contact</a>
+	</header>
+
+
+	<div class="browseWrapper">
+		<div class="articleWrapper-text">
+			<p class="content">12/09/18</p>
+			<p class="content">I’ve been learning media queries!</p>
+			<p class="content">
+				Using media query I discovered the following;
+			</p>
+				<ul>
+					<li>Its good practice to design your website for your smallest screen, then use a @media break for tablets and desktops.</li>
+					<li>It’s important to put your @media break at the bottom, I figured this out when my screen wasn’t prioritising the values set in my @media break for screens over 900px which was positioned at the top of the page</li>
+				</ul>
+			<p class="content">
+				next on the list;
+			</p>
+				<ul>
+					<li>
+						Responsive layout for portrait and landscape phones
+					</li>
+					<li>
+						Responsive layout for tablets
+					</li>
+					<li>
+						Lazy loading
+					</li>
+				</ul>
+		</div>
+	</div>
+
+	<div class="browseWrapper">
+		<div class="articleWrapper-text">
+			<p class="content">FlexBox</p>
+			<div class="fig">
+				<p>Fig 1: Using <span style="font-family: monospace;">nth-of-type()</span></p>
+				<div id="nthWrapper">
+					<div class="nthItems" >Hi!</div>
+					<div class="nthItems" >I'm</div>
+					<div class="nthItems" >learning</div>
+					<div class="nthItems" >how</div>
+					<div class="nthItems" >to</div>
+					<div class="nthItems" >use</div>
+					<div class="nthItems" >Flex</div>
+					<div class="nthItems" >Box</div>
+					<div class="nthItems" >.</div>
+				</div>
+			</div>
+
+			<p>I'm currently learning about Flexbox partly because it's very important but also because I have a specific challenge in the website I'm making for an artist.</p>
+
+			<p>The artist would like the images to scroll vertically in two columns, and for the second column to be around 300-400 pixels further down the page, a bit like bricks.</p>
+			
+			<p>I had no problem doing this using simple html and css however I want the artist to easily upload a new image and for it to smoothly fall into the right column, so I used <span style="font-family: monospace;">nth-of-type()</span> and floated every other image to the right and assigning the 2nd child with a top margin of 300px as demonstrated in Fig 1.</p>
+			<p>This is ok, but I run into issues when the Images are different heights so I would like to explore the layout using flexbox.</p>
+			<br><br><br><br><br><br>
+
+			<div class="fig">
+				<p>Fig 2: Using <span style="font-family: monospace;">display: flex;</span></p>
+				<div id="flexWrapper">
+					<div class="flexItems" >Hi!</div>
+					<div class="flexItems" >I'm</div>
+					<div class="flexItems" >learning</div>
+					<div class="flexItems" >how</div>
+					<div class="flexItems" >to</div>
+					<div class="flexItems" >use</div>
+					<div class="flexItems" >Flex</div>
+					<div class="flexItems" >Box</div>
+					<div class="flexItems" >.</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+
+	<div class="browseWrapper">
+		<div class="articleWrapper-text">
+			<p class="content">Secret message</p>
+			<button onclick="copyMessage()">Click me</button>
+			<input type="text" value="Now paste in here.." name="pasteBox" style="margin: 10px; width: 300px;">
+		</div>
+	</div>
+
+	<div class="browseWrapper">
+		<div class="articleWrapper-text">
+			<p class="content">My First Calculator</p>
+			<div id="container">
+				<div class="uncle">
+					<input type="text" name="input" id="input" value="">
+				</div>
+				<div class="child">
+					<button class="calculator" onclick="one()">1</button>
+					<button class="calculator" onclick="two()">2</button>
+					<button class="calculator" onclick="three()">3</button>
+					<button class="calculator" onclick="plus()">+</button>
+				</div>
+				<div class="child">
+					<button class="calculator" onclick="four()">4</button>
+					<button class="calculator" onclick="five()">5</button>
+					<button class="calculator" onclick="six()">6</button>
+					<button class="calculator" onclick="minus()">-</button>
+				</div>
+				<div class="child">
+					<button class="calculator" onclick="seven()">7</button>
+					<button class="calculator" onclick="eight()">8</button>
+					<button class="calculator" onclick="nine()">9</button>
+					<button class="calculator" onclick="multiply()">x</button>
+				</div>
+				<div class="aunt">
+					<button class="calculator" onclick="divide()">/</button>
+					<button class="calculator" onclick="zero()">0</button>
+					<button class="calculator" onclick="equals()">=</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="browseWrapper">
+		<div class="articleWrapper-text">
+			<p class="content">Etch-a-sketch</p>
+			<p class="content">Using Javascript <br>and JQuery</p>
+
+			<div style="float: left;">
+				<canvas id="myCanvas" width="400" height="400" style="border: solid 1px black; margin-bottom: 20px;"></canvas>
+			</div>	
+
+
+			<div style="float: left; margin: 20px;">
+				<div style="text-align: center;">
+					<button class="Etch-a-sketch" id="up">/\</button>
+				</div>
+			
+				<div style="text-align: center;">
+					<button class="Etch-a-sketch" id="left">&lt;&lt;</button>
+					<button class="Etch-a-sketch" id="right">>></button>
+				</div>
+				<div style="text-align: center;">
+					<button class="Etch-a-sketch" id="down">\/</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="browseWrapper">
+		<div class="articleWrapper-text">
+			<p class="content">
+
+				31/08/18</p>
+
+				<p class="content">Up to date I’ve been learning the following;<br>
+				C<br>
+				C++<br>
+				Html/CSS<br>
+				Javascript</p>
+
+				<p class="content">According to Microsoft’s MOOC in C++, I am at an intermediate level having covered;<br>
+				Conditions<br>
+				Loops<br>
+				Structures<br>
+				Classes<br>
+				Pointers<br>
+				Virtual Functions</p>
+
+				<p class="content">With a slight background in C++, my current aim is to focus on front-end web development, to improve my Javascript and then maybe to focus on design once I’m confident with the former.
+				I’m currently creating a website for an artist, and this blog which will record my progress. As I’m experimenting I will upload mini-projects alongside updating on this blog.</p>
+
+		</div>
+	</div>
+</body>
+</html>
