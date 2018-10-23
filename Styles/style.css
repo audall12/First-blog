@@ -36,7 +36,7 @@ a:visited {
 button {
 	text-align: center;
 	background-color: #ff8c00;
-	border-radius: 3px;
+	border-radius: 15px;
 	border-style: none;
 	padding: 10px 15px;
 }
@@ -96,9 +96,11 @@ div.browseWrapper:nth-of-type(2n+2){
 	background-color: #eafaff;
 }
 div.fig{
-	margin: 20px auto;
-	display: inline-block;
+	display: block;
+	text-align: center;
 }
+
+/*   ICONS    */
 div.iconDiv{
 	margin: 20vh 10vw;
 	display: flex;
@@ -188,6 +190,9 @@ div.iconDiv{
 	background-size: contain;
 	margin: auto;
 }
+
+/*    TEXT      */
+
 p.title{
 	font-size: 60px;
 }
@@ -215,7 +220,7 @@ div.articleWrapper-text{
 		width: auto;
 		display: inline-block;
 		padding: 10px;
-		border-radius: 2px;
+		border-radius: 15px;
 	}
 
 	.child{
@@ -249,6 +254,7 @@ div.articleWrapper-text{
 
 	/*    FLEX BOX     */
 	div#nthWrapper{
+		margin: auto;
 		width: 200px;
 		overflow: hidden;
 		text-align: center;
@@ -258,6 +264,7 @@ div.articleWrapper-text{
 		background-color: #fff;
 	}
 	div#flexWrapper{
+		margin: auto;
 		display: flex;
 		align-items: center;
 		flex-flow: row wrap;
@@ -306,7 +313,7 @@ div.articleWrapper-text{
 	a.nav {
 		width: auto;
 		display: inline-block;
-		border-radius: 4px;
+		border-radius: 15px;
 		margin-right: 50px;
 		padding: 10px 20px;
 	}
