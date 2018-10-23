@@ -1,0 +1,118 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pong</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #gamePlatform {
+            background-size: 26.05px 26.05px;
+            background-image: linear-gradient(to right, lightgrey 1px, transparent 1px), linear-gradient(to bottom, lightgrey 1px, transparent 1px);
+            display: block;
+            margin: auto;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="browseWrapper">
+        <div class="articleWrapper-text">
+            <p class="content">My First Calculator</p>
+            <canvas id="gamePlatform" width="600px" height="400px">
+            </canvas>
+        </div>
+    </div>
+<script>
+var canvas = document.getElementById('gamePlatform');
+var ctx = canvas.getContext("2d");
+
+let bx = canvas.width/2;
+let by = canvas.height * 0.66;
+let bdx = 2;
+let bdy = -2;
+let radius = 20;
+
+let rw = 100;
+let rh = 20;
+let rx = (canvas.width - rw)/2;
+let ry = canvas.height - rh;
+let rdx = 5;
+
+let rightPress = false;
+let leftPress = false;
+
+document.addEventListener('keydown', keyDownHandler, false);
+document.addEventListener('keyup', keyUpHandler, false);
+
+function keyDownHandler(e){
+    if (e.keyCode == 39){
+        rightPress = true;
+    }
+    else if (e.keyCode == 37){
+        leftPress = true;
+    }
+}
+function keyUpHandler(e){
+    if (e.keyCode == 39){
+        rightPress = false;
+    }
+    else if (e.keyCode == 37){
+        leftPress = false;
+    }
+}
+
+function drawBall(){
+    ctx.beginPath();
+    ctx.arc(bx, by, radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = "#0000FF";
+    ctx.stroke();
+    ctx.closePath(); 
+}
+
+function drawRect(){
+    ctx.beginPath();
+    ctx.rect(rx, ry, rw, rh);
+    ctx.strokeStyle = "#FF0000";
+    ctx.stroke();
+    ctx.closePath(); 
+}
+
+function moveBall(){
+    if(bx + bdx == canvas.width - radius || bx + bdx == radius){
+        bdx = -bdx;
+    }
+    if(by + bdy == radius){
+        bdy = -bdy;
+    }
+    if(by + bdy == canvas.height - radius - rh && (bx > rx && bx < rx + rw)){
+        bdy = -bdy;
+    }
+    bx += bdx;
+    by += bdy;
+}
+
+function movePaddle(){  
+    if (rightPress && rx + rdx < canvas.width - rw){
+        rx += rdx;
+    }
+    else if (leftPress && rx - rdx > 0){
+        rx -= rdx;
+    }
+}
+
+function main(){
+
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+drawBall();
+drawRect();
+moveBall();
+movePaddle();
+
+}
+
+setInterval(main, 10);
+    </script>
+</body>
+</html>

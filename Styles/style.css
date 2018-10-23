@@ -1,22 +1,28 @@
 
-
-
-
-
 *{
 	box-sizing: border-box;
 	/*border: solid 1px black;*/
 }
+html{
+	margin: 0;
+	padding: 0;
+}
 body {
-	background-color: white;
+	width: 100vw;
+	background-color: #fafaff;
 	font-family: Helvetica;
 	font-weight: lighter;
 	margin: 0;
 	padding: 0;
 }
+hr {
+	width: 85%;
+	border: solid 1px #444;
 
+}
 
 /*         Links         */
+
 a:link {
 	text-decoration: none;
 	color: black;
@@ -29,9 +35,10 @@ a:visited {
 /*    Buttons     */
 button {
 	text-align: center;
-	background-color: darkorange;
+	background-color: #ff8c00;
 	border-radius: 3px;
 	border-style: none;
+	padding: 10px 15px;
 }
 button.Etch-a-sketch{
 	padding: 10px 20px;
@@ -39,114 +46,165 @@ button.Etch-a-sketch{
 }
 
 
-	/*     Header      */
-	header {
-		background-color: white;
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		padding: 30px 0px 30px 0px;
-		text-align: center;
-	}
+/*     Header      */
+header {
+	background-color: #ff8c00;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 20px 0;
+	text-align: center;
+	z-index: 1;
+}
 
-	div.pageTitle{
-		font-size: 50px;
-		color: #333;
-	}
-	a.nav {
-		background-color: darkorange;
-		padding: 10px;
-		border-radius: 0px;
-		display: block;
-	}
-	a#firstNav{
-			
-		}
-	a.logo{
-		padding: 0;
-	}
-	a.logo div{
-		border: solid 2px black;
-		margin: 0 auto;
-		height: 80px;
-		width: 80px;
-		background-color: white;
-		background-image: url("../Images/Logo.jpg");
-		background-size: cover;
-	}
+.pageTitle{
+	display: inline-block;
+	margin: 10vh auto auto auto;
+	font-size: 50px;
+	color: #333;
+}
+a.nav {
+	background-color: #ff8c00;
+	width: 30%;
+	border-radius: 0px;
+	display: inline-block;
+}
+div.logo{
+	margin: 40vh auto auto auto;
+	height: 80px;
+	width: 80px;
+	border-radius: 50px;
+	background-image: url("../Images/Logo.jpg");
+	background-size: cover;
+}
 
 
 
 	/*        Main body       */
-	div.browseWrapper{
-		background-color: lightgrey;
-		margin: 60px 0px;
-		padding: 10px;
-		min-height: 400px;
-		width: 100%;
-		display: block;
+div.browseWrapper{
+	background-color: #fafaff;
+	min-height: 100vh;
+	display: block;
+	overflow: hidden;
+	text-align: center;
+}
+div.browseWrapper:first-of-type{
+	height: 100vh;
+}
+div.browseWrapper:nth-of-type(2n+2){
+	background-color: #eafaff;
+}
+div.fig{
+	margin: 20px auto;
+	display: inline-block;
+}
+div.iconDiv{
+	margin: 20vh 10vw;
+	display: flex;
+	justify-content: space-around;
+}
+.icon {
+	height: 80px;
+	width: 80px;
+	background-color: transparent;
+	border-radius: 50px;
+}
+.icon:hover{
+	opacity: 0.5;
+	background-color: transparent;
+}
+
+	#etch-a-sketch{
+		border-radius: 0;
+	}
+		#etchIcon{
+			margin: auto;
+			position: relative;
+			background-color: darkred;
+			height: 80px;
+			width: 80px;
+			border-radius: 15px;
+		}
+		#etchIconScreen{
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			height: 50px;
+			width: 60px;
+			background-color: #d4fbfa;
+		}
+		#etchIconButton1{
+			position: absolute;
+			bottom: 5px;
+			left: 10px;
+			height: 10px;
+			width: 10px;
+			border-radius: 50px;
+			background-color: yellow;
+		}
+		#etchIconButton2{
+			position: absolute;
+			bottom: 5px;
+			right: 10px;
+			height: 10px;
+			width: 10px;
+			border-radius: 50px;
+			background-color: yellow;
+		}
+	#calculator{
 		overflow: hidden;
+	}
+		#calculatorIcon{
+			padding-top: 8px;
+			text-align: center;
+		}
+		.cb {
+			display: inline-block;
+			height: 18px;
+			width: 18px;
+			margin: 1px;
+			background-color: #ddd;
+			border-radius: 50px;
+		}
+	#pong{
+		border: solid 2px red;
+		height: 80px;
+		width: 80px;
+		border-radius: 50px;
+	}
+.certificateIcon{
+	background-image: url("https://pbs.twimg.com/profile_images/692531829287567360/ytP7U362.png");
+	background-size: contain;
+	margin: auto;
+}
+#githubIcon {
+	background-image: url("https://image.flaticon.com/icons/png/512/25/25231.png");
+	background-size: contain;
+	margin: auto;
+}
+#linkedInIcon{
+	background-image: url("https://cdn3.iconfinder.com/data/icons/free-social-icons/67/linkedin_circle_black-512.png");
+	background-size: contain;
+	margin: auto;
+}
+p.title{
+	font-size: 60px;
+}
+p.content{
+	font-size: 15px;
+}
+div.articleWrapper-text{
+	text-align: left;
+	padding: 10px;
+	margin: 100px 30px;
+	border-radius: 4px;
+}
+.articleWrapper-text p:first-of-type{
+	font-weight: normal;
+}
+
 		
-	}
-	div.browseWrapper:first-of-type {
-		margin-top: 282px;
-		text-align: left;
-	}
-	div.browseWrapper:nth-of-type(2n+2){
-		background-color: orange;
-		text-align: right;
-	}
-		div.browseWrapper:nth-of-type(2n+1) .fig{
-			float: right;
-			text-align: right;
-		}
-		div.fig{
-			margin: 0 10px;
-			display: block;
-
-		}
-		div.articleWrapper{
-			height: 370px;
-			width: 370px;
-			padding: 5px;
-			margin: 10px auto;
-			border-radius: 4px;
-		}
-		div#news2{
-			background-image: url("../Images/Arduino2.jpg");
-			background-size: cover;
-			color: white;
-		}
-			div.articleWrapper:hover p.title{
-				color: darkgrey;
-			}
-
-			div.articleWrapper p{
-				margin: 0;
-			}
-
-			div#news2:hover p.title{
-				color: lightgrey;
-			}
-			p.title{
-				font-size: 60px;
-
-			}
-			p.content{
-				font-size: 15px;
-			}
-		div.articleWrapper-text{
-			width: 100%;
-			padding: 10px;
-			margin: 0px auto;
-			border-radius: 4px;
-		}
-			.articleWrapper-text p:first-of-type{
-				font-weight: normal;
-			}
-
-
 
 
 	/*     CACULATOR     */
@@ -231,7 +289,7 @@ button.Etch-a-sketch{
 
 @media only screen and (min-width: 700px){
 	body {
-		min-width: 900px;
+		min-width: 500px;
 	}
 
 	button:hover{
@@ -243,32 +301,33 @@ button.Etch-a-sketch{
 	}
 	header {
 		min-width: 900px;
-	}
-	div.pageTitle{
-		position: absolute;
-		top: 80px;
-		left: 50px;
-		z-index: 0;
+		background-color: #fafaff
 	}
 	a.nav {
-		margin-right: 50px;
+		width: auto;
 		display: inline-block;
-		border-radius: 0px;
+		border-radius: 4px;
+		margin-right: 50px;
+		padding: 10px 20px;
 	}
-	a#firstNav{
-		margin-left: 50px;
+	div.iconDiv{
+		margin: 20vh 20vw;
 	}
-	a.logo div{
-		border: none;
+	a#lastNav{
+		margin-right: 0;
+	}
+	.browseWrapper{
+		min-height: 450px;
+	}
+	.browseWrapper:first-of-type{
+		min-height: 400px;
 	}
 	div.articleWrapper{
 		height: 370px;
 		width: 370px;
 	}
 	div.articleWrapper-text{
-		width: 600px;
+		margin: 100px 10vw;
 	}
-	div.browseWrapper:first-of-type {
-		margin-top: 156px;
-	}
+
 }

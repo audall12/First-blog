@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Projects</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="Styles/style.css">
+	<script src="Scripts/jquery-3.3.1.js"></script>
+	<script>
+		$(document).ready(function(){
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+var x = 0;
+var y = 0;
+var dx = 0;
+var dy = 0;
+
+
+
+var Draw = function(){
+
+	ctx.beginPath();
+	ctx.arc(x, y, 2, 0, true);
+	ctx.fillStyle = '#000000';
+	ctx.fill();
+	x += dx;
+	y += dy;
+
+
+	x = x % 513;
+	y = y % 513;
+
+	if (x < 0) {
+		x = 512 + dx;
+	};
+
+	//if (x > 512) {
+	//	x = 0 + dx;
+	//};
+	if (y < 0) {
+		y = 512 + dy;
+	};
+	//if (y > 512) {
+	//	y = 0 + dy;
+	//};
+};
+
+setInterval(Draw, 16);
+
+
+$("#left").click(function(){
+	dx = -1;
+	dy = 0;
+});
+
+$("#up").click(function(){
+	dy = -1;
+	dx = 0;
+});
+
+$("#right").click(function(){
+	dx = 1;
+	dy = 0;
+});
+
+$("#down").click(function(){
+	dy = 1;
+	dx = 0;
+});
+
+
+
+});
+	</script>
+</head>
+<body>
+	<div class="browseWrapper">
+			<div class="articleWrapper-text">
+				<p class="content">Etch-a-sketch</p>
+				<p class="content">Using Javascript <br>and JQuery</p>
+	
+				<div style="float: left;">
+					<canvas id="myCanvas" width="400" height="400" style="border: solid 1px black; margin-bottom: 20px;"></canvas>
+				</div>	
+	
+	
+				<div style="float: left; margin: 20px;">
+					<div style="text-align: center;">
+						<button class="Etch-a-sketch" id="up">/\</button>
+					</div>
+				
+					<div style="text-align: center;">
+						<button class="Etch-a-sketch" id="left">&lt;&lt;</button>
+						<button class="Etch-a-sketch" id="right">>></button>
+					</div>
+					<div style="text-align: center;">
+						<button class="Etch-a-sketch" id="down">\/</button>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

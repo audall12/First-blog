@@ -7,37 +7,184 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="Styles/style.css">
 	<script src="Scripts/script.js"></script>
+	<script>
+		function copyMessage(){
+			const message = document.createElement('textarea');
+			message.value = "You did it! Apparently this is a good way of sharing your e-mail address without getting spam from machines...";
+			document.body.appendChild(message);
+			message.select();
+			document.execCommand('copy');
+			document.body.removeChild(message);
+		};
+	</script>
 </head>
 <body>
 	<header>
-		<div class="pageTitle">Anna12</div>
-		<a class="nav" id="firstNav" href="projects.html">Projects</a>
-		<a class="nav logo" href="index.html"><div></div></a>
-		<a class="nav" id="lastNav" href="contact.html">Contact</a>
+		<a class="nav" id="firstNav" href="#projects">Projects</a>
+		<a class="nav" href="#progress">Progress</a>
+		<a class="nav" id="lastNav" href="#contact">Contact</a>
 	</header>
 	<div class="browseWrapper">
-		<a href="progress.html">
-			<div class="articleWrapper" id="news3">
-				<p class="date">12/09/18</p>
-				<p class="title">This blog now responds to phone screens</p>
-			</div>
-		</a>
+		<div class="logo"></div>
+		<div class="pageTitle">Hello,<br>I'm Anna</div>
 	</div>
-	<div class="browseWrapper">
-		<a href="arduino.html">
-			<div class="articleWrapper" id="news2">
-				<p class="date">31/08/18</p>
-				<p class="title">My Arduino</p>
+<!--	PROJECTS SECTION	-->
+	<div class="browseWrapper" id="projects">
+		<div class="pageTitle">Projects</div>
+		<div class="iconDiv">
+			<div class="iconWrapper">
+				<a class="projectIcon icon" id="calculator" href="calculator.html" target="_blank">
+					<div class="icon" id="calculatorIcon">
+						<div id="row2"><div class="cb">1</div><div class="cb">2</div><div class="cb">3</div></div>
+						<div id="row3"><div class="cb">4</div><div class="cb">5</div><div class="cb">6</div></div>
+						<div id="row4"><div class="cb">7</div><div class="cb">8</div><div class="cb">9</div></div>
+					</div>
+				</a>
+				<p class="iconCaption">Calculator</p>
+			</div>	
+			<div class="iconWrapper">
+				<a class="projectIcon icon" id="etch-a-sketch" href="etch.html" target="_blank">
+					<div id="etchIcon" class="icon">
+						<div id="etchIconScreen"></div>
+						<div id="etchIconButton1"></div>
+						<div id="etchIconButton2"></div>
+					</div>
+				</a>
+				<p class="iconCaption">Etch-a-sketch</p>
 			</div>
-		</a>
+			<div class="iconWrapper">
+				<a class="projectIcon icon" href="pong.html" target="_blank">
+					<div id="pong" class="icon"></div>
+				</a>
+				<p class="iconCaption">Pong</p>
+			</div>
+		</div>
 	</div>
-	<div class="browseWrapper">
-		<a href="progress.html">
-			<div class="articleWrapper" id="news1">
-				<p class="date">31/08/18</p>
-				<p class="title">Welcome to my progress report</p>
+	<div class="browseWrapper" id="certificates">
+		<div class="pageTitle">Certificates</div>
+		<div class="iconDiv">
+			<div class="iconWrapper">
+				<a target="_blank" href="https://www.freecodecamp.org/certification/fcc098de3d5-b4fb-49dd-8e8d-c2abdeda1aed/responsive-web-design">
+					<div class="certificateIcon icon" ></div>
+				</a>
+				<p class="iconCaption">Responsive Web Design</p>
 			</div>
-		</a>
+			<div class="iconWrapper">
+				<a target="_blank" href="https://www.freecodecamp.org/certification/fcc098de3d5-b4fb-49dd-8e8d-c2abdeda1aed/javascript-algorithms-and-data-structures">
+					<div class="certificateIcon icon" ></div>
+				</a>
+				<p class="iconCaption">Javascript, Algorithms and Data Structures</p>
+			</div>
+		</div>
+	</div>
+<!--	PROGRESS SECTION	-->
+	<div class="browseWrapper" id="progress">
+		<div class="pageTitle">My Progress</div>	
+		<div class="articleWrapper-text">
+			<p class="content">12/09/18</p>
+			<p class="content">I’ve been learning media queries!</p>
+			<p class="content">Using media query I discovered the following;</p>
+			<ul>
+				<li>Its good practice to design your website for your smallest screen, then use a @media break for tablets and desktops.</li>
+				<li>It’s important to put your @media break at the bottom, I figured this out when my screen wasn’t prioritising the values set in my @media break for screens over 900px which was positioned at the top of the page</li>
+			</ul>
+			<p class="content">next on the list;</p>
+			<ul>
+				<li>Responsive layout for portrait and landscape phones</li>
+				<li>Responsive layout for tablets</li>
+				<li>Lazy loading</li>
+			</ul>
+		</div>
+
+		<hr>
+
+		<div class="articleWrapper-text">
+			<p class="content">FlexBox</p>
+			<div class="fig">
+				<p>Fig 1: Using <span style="font-family: monospace;">nth-of-type()</span></p>
+				<div id="nthWrapper">
+					<div class="nthItems" >Hi!</div>
+					<div class="nthItems" >I'm</div>
+					<div class="nthItems" >learning</div>
+					<div class="nthItems" >how</div>
+					<div class="nthItems" >to</div>
+					<div class="nthItems" >use</div>
+					<div class="nthItems" >nth</div>
+					<div class="nthItems" >of</div>
+					<div class="nthItems" >type</div>
+				</div>
+			</div>
+		
+			<p>I'm currently learning about Flexbox partly because it's very important but also because I have a specific challenge in the website I'm making for an artist.</p>
+		
+			<p>The artist would like the images to scroll vertically in two columns, and for the second column to be around 300-400 pixels further down the page, a bit like bricks.</p>
+					
+			<p>I had no problem doing this using simple html and css however I want the artist to easily upload a new image and for it to smoothly fall into the right column, so I used <span style="font-family: monospace;">nth-of-type()</span> and floated every other image to the right and assigning the 2nd child with a top margin of 300px as demonstrated in Fig 1.</p>
+			<p>This is ok, but I run into issues when the Images are different heights so I would like to explore the layout using flexbox.</p>
+			<div class="fig">
+				<p>Fig 2: Using <span style="font-family: monospace;">display: flex;</span></p>
+				<div id="flexWrapper">
+					<div class="flexItems" >Hi!</div>
+					<div class="flexItems" >I'm</div>
+					<div class="flexItems" >learning</div>
+					<div class="flexItems" >how</div>
+					<div class="flexItems" >to</div>
+					<div class="flexItems" >use</div>
+					<div class="flexItems" >Flex</div>
+					<div class="flexItems" >Box</div>
+					<div class="flexItems" >.</div>
+				</div>
+			</div>				
+		</div>
+
+		<hr>
+
+		<div class="articleWrapper-text">
+			<p class="content">Secret message</p>
+			<button onclick="copyMessage()">Click me</button>
+			<textarea type="text" name="pasteBox" cols="50" rows="5" style="display: block; margin-top: 10px;">Now paste in here..</textarea>
+		</div>
+
+		<hr>
+
+		<div class="articleWrapper-text">
+			<p class="content">31/08/18</p>
+	
+			<p class="content">Up to date I’ve been learning the following;<br>
+			C<br>
+			C++<br>
+			Html/CSS<br>
+			Javascript</p>
+
+			<p class="content">According to Microsoft’s MOOC in C++, I am at an intermediate level having covered;<br>
+			Conditions<br>
+			Loops<br>
+			Structures<br>
+			Classes<br>
+			Pointers<br>
+			Virtual Functions</p>
+	
+			<p class="content">With a slight background in C++, my current aim is to focus on front-end web development, to improve my Javascript and then maybe to focus on design. This blog which will record my progress, as I’m experimenting I will upload mini-projects alongside updating this blog.</p>
+	
+			</div>
+	</div>
+<!--	CONTACT SECTION		-->
+	<div class="browseWrapper" id="contact">
+		<div class="pageTitle">Contact</div>
+		<div class="iconDiv">
+			<div class="iconWrapper">
+				<a href="https://github.com/audall12" target="_blank">
+					<div class="icon" id="githubIcon"></div>
+				</a>
+				<p class="iconCaption">GitHub</p>
+			</div>
+			<div class="iconWrapper">
+				<a href="https://www.linkedin.com/in/anna-udall-154345b0/?originalSubdomain=uk" target="_blank">
+					<div class="icon" id="linkedInIcon"></div>
+				</a>
+				<p class="iconCaption">LinkedIn</p>
+			</div>
+		</div>
 	</div>
 
 
