@@ -47,8 +47,9 @@ originalCanvas.canvas.height = 300;
 
 
 let original_to_screen_ratio = screenCanvas.canvas.width/originalCanvas.canvas.width;
+let bounding_rectangle = screenCanvas.canvas.getBoundingClientRect();
 
-function resize(event){
+function resize(){
 	screenCanvas.canvas.width = Math.floor(document.documentElement.clientWidth - 32);
 	if(screenCanvas.canvas.width < document.documentElement.clientHeight){
 		screenCanvas.canvas.width = document.documentElement.clientHeight - 32;
@@ -116,21 +117,33 @@ function keyUpHandler(e){
         leftPress = false;
     }
 }
+let startX = 0;
+let paddleTouch = 0;
+let moveX = 0;
 function touchStart(e){
-    e.preventDefault();
-    if (e.x <= paddle.x +(paddle.width/2)) {
-        leftPress = true;
-        rightPress = false;
-    }
-    else {
-        leftPress = false;
-        rightPress = true;
+    if (isPaddle(e)){
+        e.preventDefault();
+        startX = (e.changedTouches[0].clientX - bounding_rectangle.left) * original_to_screen_ratio;
+        paddleTouch = startX - paddle.x;
     }
 }
-function touchEnd(e){
+function touchMove(e){
     e.preventDefault();
-    leftPress = false;
-    rightPress = false;
+    moveX = (e.changedTouches[0].clientX - bounding_rectangle.left) * original_to_screen_ratio;
+    paddle.x = moveX + bounding_rectangle.left;
+}
+function touchEnd(e) {
+
+    e.preventDefault();
+}
+
+function isPaddle(e){
+    let touchX = (e.changedTouches[0].clientX - bounding_rectangle.left) * original_to_screen_ratio; 
+    let touchY = (e.changedTouches[0].clientY - bounding_rectangle.top) * original_to_screen_ratio;
+    if ((touchX >= paddle.x && touchX <= paddle.x + paddle.width) && (touchY >= paddle.y && touchY >= paddle.y + paddle.height)){
+        return true;
+    }
+    else return false;
 }
 
 //			OBJECTS
@@ -166,6 +179,7 @@ window.addEventListener("resize", resize);
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
 screenCanvas.canvas.addEventListener('touchstart', touchStart, false);
+screenCanvas.canvas.addEventListener('touchmove', touchMove, false);
 screenCanvas.canvas.addEventListener('touchend', touchEnd, false);
 
 resize();
