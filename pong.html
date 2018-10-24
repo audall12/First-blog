@@ -50,9 +50,9 @@ let original_to_screen_ratio = screenCanvas.canvas.width/originalCanvas.canvas.w
 
 function resize(event){
 	screenCanvas.canvas.width = Math.floor(document.documentElement.clientWidth - 32);
-	/*if(screenCanvas.canvas.width < document.documentElement.clientHeight){
+	if(screenCanvas.canvas.width < document.documentElement.clientHeight){
 		screenCanvas.canvas.width = document.documentElement.clientHeight - 32;
-	}*/
+	}
 	screenCanvas.canvas.height = screenCanvas.canvas.width * 0.5;
 }
 
