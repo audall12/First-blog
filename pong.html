@@ -116,6 +116,20 @@ function keyUpHandler(e){
         leftPress = false;
     }
 }
+function touchStart(e){
+    if (e.x <= paddle.x +(paddle.width/2)) {
+        leftPress = true;
+        rightPress = false;
+    }
+    else {
+        leftPress = false;
+        rightPress = true;
+    }
+}
+function touchEnd {
+    leftPress = false;
+    rightPress = false;
+}
 
 //			OBJECTS
 
@@ -149,9 +163,14 @@ let rightPress = false;
 window.addEventListener("resize", resize);
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
+screenCanvas.canvas.addEventListener('touchstart', touchStart, false);
+screenCanvas.canvas.addEventListener('touchend', touchEnd, false);
+
 resize();
 
 setInterval(play, 10);
+
+
     </script>
 </body>
 </html>
