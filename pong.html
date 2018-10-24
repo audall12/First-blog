@@ -7,44 +7,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="Styles/style.css">
     <style>
-        #gamePlatform {
+        * {
+            box-sizing:border-box;
+            margin:0;
+            padding:0;
+        }
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+            display: grid;
+        }
+        canvas{
+            justify-self: center;
             background-size: 26.05px 26.05px;
             background-image: linear-gradient(to right, lightgrey 1px, transparent 1px), linear-gradient(to bottom, lightgrey 1px, transparent 1px);
-            display: block;
-            margin: auto;
+           
         }
     </style>
     
 </head>
 <body>
     <div class="browseWrapper">
-        <div class="articleWrapper-text">
+        <div style="text-align: center;">
             <p class="content">Pong</p>
-            <canvas id="gamePlatform" width="600px" height="400px">
+            <canvas>
             </canvas>
         </div>
     </div>
 <script>
-var canvas = document.getElementById('gamePlatform');
-var ctx = canvas.getContext("2d");
+let originalCanvas = document.createElement('canvas').getContext('2d');
+let screenCanvas = document.querySelector('canvas').getContext('2d');
 
-let bx = canvas.width/2;
-let by = canvas.height * 0.66;
-let bdx = 2;
-let bdy = -2;
-let radius = 20;
+originalCanvas.canvas.width = 600;
+originalCanvas.canvas.height = 300;
 
-let rw = 100;
-let rh = 20;
-let rx = (canvas.width - rw)/2;
-let ry = canvas.height - rh;
-let rdx = 5;
 
-let rightPress = false;
-let leftPress = false;
+let original_to_screen_ratio = screenCanvas.canvas.width/originalCanvas.canvas.width;
 
-document.addEventListener('keydown', keyDownHandler, false);
-document.addEventListener('keyup', keyUpHandler, false);
+function resize(event){
+	screenCanvas.canvas.width = Math.floor(document.documentElement.clientWidth - 32);
+	if(screenCanvas.canvas.width < document.documentElement.clientHeight){
+		screenCanvas.canvas.width = document.documentElement.clientHeight - 32;
+	}
+	screenCanvas.canvas.height = screenCanvas.canvas.width * 0.5;
+}
+
+function render() {
+	screenCanvas.drawImage(originalCanvas.canvas, 0, 0, screenCanvas.canvas.width, screenCanvas.canvas.height);
+}
+
+function drawBall(){
+	originalCanvas.beginPath();
+	originalCanvas.arc(ball.x, ball.y, ball.radius, 0, 2*Math.PI);
+	originalCanvas.strokeStyle = "blue";
+	originalCanvas.stroke();
+	originalCanvas.closePath();
+}
+
+function drawPaddle(){
+	originalCanvas.beginPath();
+	originalCanvas.rect(paddle.x, paddle.y, paddle.width, paddle.height);
+	originalCanvas.strokeStyle = "red";
+	originalCanvas.stroke();
+	originalCanvas.closePath();
+}
+
+//			MOVE FUNCTIONS
+
+function moveBall(){
+	if (ball.x + ball.move_x <= ball.radius || ball.x + ball.move_x >= originalCanvas.canvas.width - ball.radius){
+		ball.move_x = -ball.move_x;
+	}
+	if (ball.y + ball.move_y <= ball.radius || (ball.y + ball.move_y >= originalCanvas.canvas.height - ball.radius - paddle.height && ball.x >= paddle.x && ball.x <= paddle.x + paddle.width) ){
+		ball.move_y = -ball.move_y;
+	}
+	if (ball.y + ball.move_y >= originalCanvas.canvas.height){
+		location.reload();
+	}
+	ball.x += ball.move_x;
+	ball.y += ball.move_y;
+}
+
+function movePaddle(){
+	if (rightPress && paddle.x + paddle.move_x < originalCanvas.canvas.width - paddle.width) paddle.x += paddle.move_x;
+	if (leftPress && paddle.x - paddle.move_x > 0) paddle.x -= paddle.move_x;	
+}
+
+
+//			EVENTS
 
 function keyDownHandler(e){
     if (e.keyCode == 39){
@@ -63,57 +117,41 @@ function keyUpHandler(e){
     }
 }
 
-function drawBall(){
-    ctx.beginPath();
-    ctx.arc(bx, by, radius, 0, 2 * Math.PI);
-    ctx.strokeStyle = "#0000FF";
-    ctx.stroke();
-    ctx.closePath(); 
+//			OBJECTS
+
+let ball = {
+	x: 300,
+	y: 200,
+	radius: 10,
+	move_x: 2,
+	move_y: -2
+};
+let paddle = {
+	x: 285,
+	y: 285,
+	width: 60,
+	height: 15,
+	move_x: 5
+};
+
+function play(){
+	originalCanvas.clearRect(0, 0, originalCanvas.canvas.width, originalCanvas.canvas.height);
+	screenCanvas.clearRect(0, 0, screenCanvas.canvas.width, screenCanvas.canvas.height);
+	drawBall();
+	drawPaddle();
+	render();	
+	moveBall();
+	movePaddle();
 }
 
-function drawRect(){
-    ctx.beginPath();
-    ctx.rect(rx, ry, rw, rh);
-    ctx.strokeStyle = "#FF0000";
-    ctx.stroke();
-    ctx.closePath(); 
-}
+let leftPress = false;
+let rightPress = false;
+window.addEventListener("resize", resize);
+document.addEventListener('keydown', keyDownHandler, false);
+document.addEventListener('keyup', keyUpHandler, false);
+resize();
 
-function moveBall(){
-    if(bx + bdx == canvas.width - radius || bx + bdx == radius){
-        bdx = -bdx;
-    }
-    if(by + bdy == radius){
-        bdy = -bdy;
-    }
-    if(by + bdy == canvas.height - radius - rh && (bx > rx && bx < rx + rw)){
-        bdy = -bdy;
-    }
-    bx += bdx;
-    by += bdy;
-}
-
-function movePaddle(){  
-    if (rightPress && rx + rdx < canvas.width - rw){
-        rx += rdx;
-    }
-    else if (leftPress && rx - rdx > 0){
-        rx -= rdx;
-    }
-}
-
-function main(){
-
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-drawBall();
-drawRect();
-moveBall();
-movePaddle();
-
-}
-
-setInterval(main, 10);
+setInterval(play, 10);
     </script>
 </body>
 </html>
