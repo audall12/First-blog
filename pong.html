@@ -54,7 +54,9 @@ function resize(){
 	if(screenCanvas.canvas.width < document.documentElement.clientHeight){
 		screenCanvas.canvas.width = document.documentElement.clientHeight - 32;
 	}
-	screenCanvas.canvas.height = screenCanvas.canvas.width * 0.5;
+    screenCanvas.canvas.height = screenCanvas.canvas.width * 0.5;
+    original_to_screen_ratio = screenCanvas.canvas.width/originalCanvas.canvas.width;
+    bounding_rectangle = screenCanvas.canvas.getBoundingClientRect();
 }
 
 function render() {
@@ -87,7 +89,7 @@ function moveBall(){
 		ball.move_y = -ball.move_y;
 	}
 	if (ball.y + ball.move_y >= originalCanvas.canvas.height){
-		location.reload();
+		//location.reload();
 	}
 	ball.x += ball.move_x;
 	ball.y += ball.move_y;
@@ -117,33 +119,27 @@ function keyUpHandler(e){
         leftPress = false;
     }
 }
-let startX = 0;
-let paddleTouch = 0;
-let moveX = 0;
+let startX;
+let paddleTouch;
+let moveX;
+
 function touchStart(e){
-    if (isPaddle(e)){
-        e.preventDefault();
-        startX = (e.changedTouches[0].clientX - bounding_rectangle.left) * original_to_screen_ratio;
-        paddleTouch = startX - paddle.x;
-    }
+    let clientX = e.changedTouches[0].clientX;
+    e.preventDefault();
+    startX = (clientX - bounding_rectangle.left) / original_to_screen_ratio;
+    paddleTouch = startX - paddle.x;
+
 }
 function touchMove(e){
     e.preventDefault();
-    moveX = (e.changedTouches[0].clientX - bounding_rectangle.left) * original_to_screen_ratio;
-    paddle.x = moveX + bounding_rectangle.left;
+    moveX = (e.changedTouches[0].clientX - bounding_rectangle.left) / original_to_screen_ratio;
+    if (moveX - paddleTouch > 0 && moveX - paddleTouch + paddle.width < originalCanvas.canvas.width){
+        paddle.x = moveX - paddleTouch;
+    }
 }
 function touchEnd(e) {
 
     e.preventDefault();
-}
-
-function isPaddle(e){
-    let touchX = (e.changedTouches[0].clientX - bounding_rectangle.left) * original_to_screen_ratio; 
-    let touchY = (e.changedTouches[0].clientY - bounding_rectangle.top) * original_to_screen_ratio;
-    if ((touchX >= paddle.x && touchX <= paddle.x + paddle.width) && (touchY >= paddle.y && touchY >= paddle.y + paddle.height)){
-        return true;
-    }
-    else return false;
 }
 
 //			OBJECTS
@@ -178,15 +174,13 @@ let rightPress = false;
 window.addEventListener("resize", resize);
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
-screenCanvas.canvas.addEventListener('touchstart', touchStart, false);
-screenCanvas.canvas.addEventListener('touchmove', touchMove, false);
-screenCanvas.canvas.addEventListener('touchend', touchEnd, false);
+screenCanvas.canvas.addEventListener('touchstart', touchStart, {passive: false});
+screenCanvas.canvas.addEventListener('touchmove', touchMove, {passive: false});
+screenCanvas.canvas.addEventListener('touchend', touchEnd, {passive: false});
 
 resize();
 
 setInterval(play, 10);
-
-
     </script>
 </body>
 </html>
