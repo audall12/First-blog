@@ -1,0 +1,16 @@
+@media only screen and (orientation: portrait){
+    .browseWrapper{
+        display: none !important;
+    }
+
+    .rotateWarning{
+        font-size: 5vw;
+        font-weight: bold;
+        color: #d85103;
+        position: absolute;
+        top: 50vh;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}

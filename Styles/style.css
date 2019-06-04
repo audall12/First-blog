@@ -211,7 +211,9 @@ div.articleWrapper-text{
 	font-weight: normal;
 }
 
-		
+.rotateWarning{
+	display: none;
+}		
 
 
 	/*     CACULATOR     */
